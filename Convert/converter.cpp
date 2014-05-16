@@ -17,7 +17,7 @@ int binaryNum [32];
 void DecToBinary(int num)
 {
 	int bits = 32;
-	cout<<bits<<'\n';
+	//cout<<bits<<'\n';
 	for(int i=0; i<bits;i++)
 	{
 		if (num == 0)
@@ -43,27 +43,28 @@ void DecToBinary(int num)
 	{
 		cout<<binaryNum[i];
 	}
-
+	cout<<'\n';
 }
 
 
-void BinToDecimal(char bin[32])
+void BinToDecimal(int num)
 {
-	int decimalNum=1;
-	//cout<<"this" ;
-	decimalNum = decimalNum *2 + bin[strlen(bin)];
-	for(int i=strlen(bin);i<0;i--)
-	{
-		decimalNum = decimalNum *2 + bin[i];
-	}
-	cout<<decimalNum<<endl;
+	int dec=0, rem, base=1;
 
+	while(num>0)
+	{
+		rem = num%10;
+		dec = dec+rem*base;
+		base = base*2;
+		num=num/10;
+	}
+	cout<<dec<<endl;
 }
 
 void main()
 {
 	int decNum;
-	char input[32];
+	int bin;
 	//int p2[32]; //powers of 2 array. 
 	int x;
 	cout<<"Enter 1: Decimal to Binary, 2: Binary to Decimal, 0:Exit"<<endl;
@@ -83,11 +84,13 @@ void main()
 		if(x!=0 && x==2)
 		{
 			cout<<"Enter a binary number to convert "<<endl;
-			cin>>input;
-			BinToDecimal(input);
-
+			cin>>bin;
+			BinToDecimal(bin);
+			cout<<'\n';
+			cout<<"Enter 1: Decimal to Binary, 2: Binary to Decimal, 0:Exit"<<endl;
+			cin>>x;
 		}
-		cout<<"Enter 1: Decimal to Binary, 2: Binary to Decimal, 0:Exit"<<endl;
-		cin>>x;
+		//cout<<"Enter 1: Decimal to Binary, 2: Binary to Decimal, 0:Exit"<<endl;
+		//cin>>x;
 	}
 }
